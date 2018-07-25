@@ -1,3 +1,5 @@
 *.bc
 *.opt
 !Makefile
+_build
+.merlin
