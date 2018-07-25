@@ -1,0 +1,39 @@
+(executable
+ (name hh_client)
+ (modules Hh_client)
+ (libraries hh_client)
+)
+
+(executable
+ (name hh_server)
+ (modules Hh_server)
+ (libraries hh_server)
+)
+
+(executable 
+ (name hh_single_type_check)
+ (modules Hh_single_type_check)
+ (flags (:standard -w -6-50))
+ (libraries hh_client)
+)
+
+(executable 
+ (name hh_single_parse)
+ (modules Hh_single_parse)
+ (flags (:standard -w -6-50))
+ (libraries hh_client)
+)
+
+(executable 
+ (name hh_single_compile)
+ (modules Hh_single_compile)
+ (flags (:standard -w -6-50 -unsafe-string))
+ (libraries hh_client hh_hhbc hh_facts)
+)
+
+(executable 
+ (name hackfmt)
+ (modules Hackfmt)
+ (flags (:standard -w -6-50))
+ (libraries hh_diff hh_hackfmt)
+)

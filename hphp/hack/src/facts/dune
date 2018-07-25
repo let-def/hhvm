@@ -1,0 +1,5 @@
+(library
+  (name hh_facts)
+  (libraries hh_parser hh_hhbc)
+  (preprocess (pps ppx_deriving.std))
+  (wrapped false))

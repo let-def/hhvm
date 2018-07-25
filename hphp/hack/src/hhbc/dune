@@ -1,0 +1,14 @@
+(rule
+ (targets hhas_parser.mli hhas_parser.ml)
+ (deps    hhas_parser.mly)
+ (action  (chdir %{workspace_root}
+           (run %{bin:ocamlyacc} -q %{deps}))))
+
+(ocamllex
+ (modules hhas_lexer))
+
+(library
+ (name hh_hhbc)
+ (libraries hh_parser)
+ (flags (:standard -w -6-50))
+ (wrapped false)) 

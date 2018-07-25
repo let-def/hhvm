@@ -1,0 +1,8 @@
+(rule (copy# debug/hackfmt_debug.ml hackfmt_debug.ml))
+(rule (copy# error/hackfmt_error.ml hackfmt_error.ml))
+
+(library
+ (name hh_hackfmt)
+ (libraries hh_utils hh_parser hh_errors)
+ (flags (:standard -w -6))
+ (wrapped false))

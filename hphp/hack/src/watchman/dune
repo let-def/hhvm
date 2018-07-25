@@ -1,0 +1,6 @@
+(library
+ (name hh_watchman)
+ (modules watchman watchman_sig watchman_utils)
+ (libraries hh_utils hh_stubs)
+ (flags (:standard -w -6-50))
+ (wrapped false))

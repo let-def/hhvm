@@ -1,0 +1,7 @@
+(library
+ (name hh_multiworker)
+ (libraries hh_utils hh_heap)
+ (preprocess (pps lwt_ppx))
+ (flags (:standard -w -50-6))
+ (modules (:standard \ multiWorkerLwt workerControllerLwt))
+ (wrapped false))

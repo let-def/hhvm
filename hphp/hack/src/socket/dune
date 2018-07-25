@@ -1,0 +1,4 @@
+(library
+ (name hh_socket)
+ (libraries hh_utils)
+ (wrapped false))

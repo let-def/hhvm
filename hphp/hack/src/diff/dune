@@ -1,0 +1,5 @@
+(library
+ (name hh_diff)
+ (wrapped false)
+ (flags (:standard -w -6)) 
+ (libraries hh_utils))

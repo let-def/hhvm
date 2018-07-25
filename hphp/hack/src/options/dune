@@ -1,0 +1,5 @@
+(library
+ (name hh_options)
+ (wrapped false)
+ (libraries hh_utils hh_errors)
+ (preprocess (pps ppx_deriving.std)))

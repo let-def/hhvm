@@ -1,0 +1,4 @@
+(library
+ (name monoidAvl)
+ (flags (:standard -w -27))
+ (wrapped false))

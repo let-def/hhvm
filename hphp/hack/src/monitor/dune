@@ -1,0 +1,5 @@
+(library
+ (name hh_monitor)
+ (flags (:standard -w -6-50 -unsafe-string))
+ (libraries hh_stubs hh_utils hh_socket hh_libancillary)
+ (wrapped false))

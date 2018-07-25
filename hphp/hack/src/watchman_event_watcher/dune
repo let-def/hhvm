@@ -1,0 +1,5 @@
+(library
+ (name hh_watchman_event_watcher)
+ (libraries hh_globals hh_socket hh_watchman)
+ (flags (:standard -w -50 -unsafe-string))
+ (wrapped false))

@@ -1,0 +1,6 @@
+(library
+ (name hh_heap)
+ (libraries hh_utils hh_stubs)
+ (flags (:standard -w -50-6))
+ (c_names hh_shared lib_dumbsqlite)
+ (wrapped false))

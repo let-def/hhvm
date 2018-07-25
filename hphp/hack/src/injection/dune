@@ -1,0 +1,5 @@
+(rule (copy# default_injector/injector_config.ml injector_config.ml))
+
+(library
+ (name hh_injection)
+ (wrapped false))

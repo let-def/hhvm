@@ -1,0 +1,4 @@
+(library
+ (name hh_globals)
+ (libraries hh_utils hh_heap)
+ (wrapped false))

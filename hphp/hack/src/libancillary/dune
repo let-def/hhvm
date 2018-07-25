@@ -1,0 +1,7 @@
+(library
+ (name hh_libancillary)
+ (flags (:standard -w -50))
+ (c_names libancillary-stubs)
+ (c_flags -I ../../../../../../)
+ (libraries libancillary)
+ (wrapped false))

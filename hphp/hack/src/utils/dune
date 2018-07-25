@@ -1,0 +1,43 @@
+(* -*- tuareg -*- *)
+
+module J = Jbuild_plugin.V1
+
+let list_dirs dir = Array.to_list (Sys.readdir dir)
+
+let keep_file f =
+  List.exists (Filename.check_suffix f) [ ".ml"; ".mli"; ".c" ]
+
+let list_files dir =
+  List.map (fun f -> dir, f) (List.filter keep_file (list_dirs dir))
+
+let subdirs = List.filter Sys.is_directory (list_dirs ".")
+
+let files = List.flatten (List.map list_files subdirs)
+
+let copy_rule (dir, file) =
+  Printf.sprintf "(rule (copy# \"%s/%s\" \"%s\"))" dir file file
+
+let copy_rules = String.concat "\n" (List.map copy_rule files)
+
+;; Printf.ksprintf J.send {|
+%s
+
+(rule
+ (targets get_build_id.gen.c)
+ (action  (chdir %%{workspace_root}
+           (run %%{bin:ocaml} -I ../../../scripts -w -3 unix.cma -unsafe-string
+              ../../../scripts/gen_build_id.ml utils/get_build_id.gen.c))))
+
+(library
+ (name hh_utils)
+ (wrapped false)
+ (flags (:standard -w -6-50 -unsafe-string))
+ (preprocess (pps ppx_deriving.std))
+ (libraries core str unix lwt hh_injection)
+ (c_names libcpu_cycles compiler_id_impl get_build_id getrusage handle_stubs 
+          files realpath nproc sysinfo processor_info priorities stubparentimpl 
+          libparent get_build_id.gen)
+ (c_flags -I ../../../../../../)
+ (c_library_flags -lsqlite3)
+)
+|} copy_rules

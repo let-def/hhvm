@@ -1,0 +1,5 @@
+(library
+ (name hh_search)
+ (libraries hh_utils hh_parser)
+ (flags (:standard -w -6))
+ (wrapped false))

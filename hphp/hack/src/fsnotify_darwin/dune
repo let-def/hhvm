@@ -1,0 +1,5 @@
+(library
+ (name hh_fsnotify_darwin)
+ (libraries hh_utils fsevents)
+ (flags (:standard -w -6))
+ (wrapped false))

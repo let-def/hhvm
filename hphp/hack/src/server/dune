@@ -1,0 +1,10 @@
+(rule (copy# ../config/state_loader_config.ml state_loader_config.ml))
+(rule (copy# ../stubs/state_loader.ml state_loader.ml))
+
+(library
+ (name hh_server)
+ (libraries hh_utils hh_stubs hh_parser hh_typing hh_search
+            hh_monitor hh_watchman hh_hhi hh_dfind hh_gen_deps
+            hh_watchman_event_watcher)
+ (flags (:standard -w -6-20-50))
+ (wrapped false))

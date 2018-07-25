@@ -1,0 +1,16 @@
+(* -*- tuareg -*- *)
+
+module J = Jbuild_plugin.V1
+
+let hhi_dir =
+  List.fold_left Filename.concat
+    (Sys.getcwd ()) [".."; ".."; "hhi"]
+
+;; Printf.ksprintf J.send {|
+(library
+ (name hh_hhi)
+ (wrapped false)
+ (preprocess (pps ppx_gen_hhi -- --hhi-dir %S))
+ (libraries hh_globals hh_utils bigarray hh_find)
+ (c_library_flags (-framework CoreFoundation -framework CoreServices -lLZ4)))
+|} hhi_dir

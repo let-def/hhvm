@@ -1,0 +1,4 @@
+(library
+ (name hh_gen_deps)
+ (libraries hh_multiworker hh_parser)
+ (wrapped false))

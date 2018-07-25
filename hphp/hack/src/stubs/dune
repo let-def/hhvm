@@ -1,0 +1,8 @@
+(library
+ (name hh_stubs)
+ (modules EventLogger HackEventLogger HackcEventLogger HackfmtEventLogger Scuba
+          FilesToIgnore TypingLogger ClientMessages LoadScriptUtils 
+          LoadScriptConfig Ai Ai_options Linting_service Xdb BuildMain)
+ (libraries hh_errors)
+ (flags (:standard -w -50-27))
+ (wrapped false))

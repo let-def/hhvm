@@ -1,0 +1,4 @@
+(library
+ (name fsevents)
+ (c_names fsevents_stubs)
+ (wrapped false))

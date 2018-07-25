@@ -1,0 +1,6 @@
+(library
+ (name hh_dfind)
+ (libraries hh_utils hh_stubs hh_fsnotify_darwin monoidAvl)
+ (modules (:standard \ DfindLibLwt))
+ (flags (:standard -w -6))
+ (wrapped false))

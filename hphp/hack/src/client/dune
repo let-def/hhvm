@@ -1,0 +1,8 @@
+(rule (copy# ../ide_rpc/nuclide_rpc_message_printer.ml 
+             nuclide_rpc_message_printer.ml))
+
+(library
+ (name hh_client)
+ (libraries hh_utils hh_stubs hh_monitor hh_globals hh_server)
+ (flags (:standard -w -6-50))
+ (wrapped false))
