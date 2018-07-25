@@ -335,7 +335,7 @@ module PseudoConsts = struct
   ]
   let is_pseudo_const =
     let h = HashSet.create 23 in
-    List.iter all_pseudo_consts (HashSet.add h);
+    List.iter all_pseudo_consts ~f:(HashSet.add h);
     fun x -> HashSet.mem h x
 
 end
@@ -389,7 +389,7 @@ module Superglobals = struct
 
   let is_superglobal =
     let h = HashSet.create 23 in
-    List.iter all_superglobals (HashSet.add h);
+    List.iter all_superglobals ~f:(HashSet.add h);
     fun x -> HashSet.mem h x
 end
 
@@ -401,6 +401,6 @@ module PPLFunctions = struct
 
   let is_reserved =
     let h = HashSet.create 23 in
-    List.iter all_reserved (HashSet.add h);
+    List.iter all_reserved ~f:(HashSet.add h);
     fun name -> HashSet.mem h name
 end

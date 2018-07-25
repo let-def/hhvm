@@ -93,7 +93,7 @@ let unescape_literal literal_kind s =
    * Will always stop at i=max. *)
   let rec count_f f ~max i =
     if i >= max || !idx + i >= len || not (f s.[!idx+i]) then i
-    else count_f f max (i+1)
+    else count_f f ~max (i+1)
   in
 
   while !idx < len do

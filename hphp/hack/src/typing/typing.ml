@@ -1232,7 +1232,7 @@ and is_pseudo_function s =
 
 and loop_forever env =
   (* forever = up to 10 minutes, to avoid accidentally stuck processes *)
-  for i = 1 to 600 do
+  for _i = 1 to 600 do
     (* Look up things in shared memory occasionally to have a chance to be
      * interrupted *)
     match Env.get_class env "FOR_TEST_ONLY" with

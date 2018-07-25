@@ -109,4 +109,4 @@ let create (path: string) : string =
   else
     failwith ("Not an absolute filepath - " ^ path)
   in
-  "file:///" ^ (escape path_safe_chars absolute_path)
+  "file:///" ^ (escape ~safe_chars:path_safe_chars absolute_path)

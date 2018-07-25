@@ -410,7 +410,7 @@ module type S = sig
   val ignore_ : (unit -> 'a) -> 'a
   val try_when :
     (unit -> 'a) -> when_:(unit -> bool) -> do_:(error -> unit) -> 'a
-  val has_no_errors : (unit -> 'a) -> bool
+  val has_no_errors : (unit -> unit) -> bool
   val currently_has_errors : unit -> bool
   val must_error : (unit -> unit) -> (unit -> unit) -> unit
   val to_absolute : error -> Pos.absolute error_

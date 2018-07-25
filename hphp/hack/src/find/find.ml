@@ -38,7 +38,7 @@ let fold_files (type t)
            | Some S_DIR -> fold (depth+1) acc file
            | _ -> acc)
         acc files in
-  let paths = List.map paths Path.to_string in
+  let paths = List.map paths ~f:Path.to_string in
   List.fold_left paths ~init ~f:(fold 0)
 
 let iter_files ?max_depth ?filter ?file_only paths action =
