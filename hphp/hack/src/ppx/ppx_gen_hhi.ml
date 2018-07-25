@@ -7,6 +7,8 @@
  *
  *)
 
+open Migrate_parsetree
+open OCaml_current.Ast
 open Asttypes
 open Parsetree
 open Ast_mapper
@@ -74,18 +76,19 @@ let get_hhis dir =
      end
   ) []
 
-(* Turn the (name, contents) list into a PPX ast (string * string) array
- * expression *)
-let contents =
-  let hhi_dir = Sys.argv.(1) in
-  get_hhis hhi_dir
-  |> List.map (fun (name, contents) -> Exp.tuple [
-      Exp.constant (Const.string name); Exp.constant (Const.string contents);
-    ])
-  |> Exp.array
+let hhi_dir = ref ""
 
 (* Whenever we see [%hhi_contents], replace it with all of the hhis *)
-let ppx_gen_hhi_mapper _argv =
+let ppx_gen_hhi_mapper _config _cookies =
+  (* Turn the (name, contents) list into a PPX ast (string * string) array
+   * expression *)
+  let contents =
+    get_hhis !hhi_dir
+    |> List.map (fun (name, contents) -> Exp.tuple [
+      Exp.constant (Const.string name); Exp.constant (Const.string contents);
+    ])
+    |> Exp.array
+  in
  { default_mapper with
    expr = fun mapper expr ->
      match expr with
@@ -94,4 +97,9 @@ let ppx_gen_hhi_mapper _argv =
      | other -> default_mapper.expr mapper other; }
 
 let () =
-  register "ppx_gen_hhi" ppx_gen_hhi_mapper
+  let name = "ppx_gen_hhi" in
+  let args = [
+    "--hhi-dir", Arg.Set_string hhi_dir,
+    "Directory containing hhi files to embed"
+  ] in
+  Driver.register ~name ~args Versions.ocaml_current ppx_gen_hhi_mapper
